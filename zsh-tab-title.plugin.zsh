@@ -86,8 +86,8 @@ function omz_termsupport_preexec {
     local LINE=${2:gs/%/%%}
   else
 	  # cmd name only, or if this is sudo or ssh, the next cmd
-	  local CMD=${1[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
-    local LINE=${2[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
+	  local CMD=${(j: :)${${${(z)1}:#(*=*|sudo|ssh|mosh|rake|-*)}:t}:gs/%/%%}
+    local LINE=${(j: :)${${${(z)2}:#(*=*|sudo|ssh|mosh|rake|-*)}:t}:gs/%/%%}
   fi
 
   if [[ "$ZSH_TAB_TITLE_CMD_TITLE" == true ]]; then
