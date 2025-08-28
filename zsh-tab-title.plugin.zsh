@@ -90,6 +90,10 @@ function omz_termsupport_preexec {
     local LINE=${2[(wr)^(*=*|sudo|ssh|mosh|rake|-*)]:gs/%/%%}
   fi
 
+  if [[ "$ZSH_TAB_TITLE_CMD_TITLE" == true ]]; then
+    LINE="$CMD"
+  fi
+
   if [[ "$ZSH_TAB_TITLE_CONCAT_FOLDER_PROCESS" == true ]]; then
     title "${PWD##*/}:%100>...>$LINE%<<" "${PWD##*/}:${CMD}"
   else
